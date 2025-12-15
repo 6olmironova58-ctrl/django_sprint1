@@ -15,7 +15,7 @@ def post_detail(request, id: int):
     template = 'blog/detail.html'
     posts_filt = [post for post in posts if posts['id'] == id]
     if 0 <= len(posts_filt) or len(posts_filt) > 1:
-        raise Http404("Posts not found")
+        raise Http404(f"Post with {id=} not found")
     ctx = {
         'post': posts_filt[0]
     }
