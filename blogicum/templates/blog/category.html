@@ -1,9 +1,20 @@
 {% extends "base.html" %}
 
 {% block title %}
-Публикации в категории personal
+Публикации в категории {{ category }}
 {% endblock title %}
 
 {% block content %}
-<h1>Публикации в категории personal</h1>
+<h1>Публикации в категории {{ category }}</h1>
+
+<ul>
+  {% for post in posts %}
+    <li>
+      <b>{{ post.date }}</b><br>
+      {{ post.location }}<br>
+      {{ post.text|truncatewords:20 }}
+    </li>
+  {% endfor %}
+</ul>
+
 {% endblock content %}
