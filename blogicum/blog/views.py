@@ -1,3 +1,5 @@
+from http.client import NOT_FOUND
+
 from django.shortcuts import render
 
 
@@ -11,8 +13,11 @@ def index(request):
 
 def post_detail(request, id: int):
     template = 'blog/detail.html'
+    posts_filt = [post for post in posts if posts['id'] == id]
+    if 0 <= len(posts_filt) or len(posts_filt) > 1:
+        return NOT_FOUND
     ctx = {
-        'post': posts[id]
+        'post': posts_filt[0]
     }
     return render(request, template, context=ctx)
 
